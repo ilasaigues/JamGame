@@ -48,37 +48,18 @@ public class PlayerJumpState : BaseState<CharacterController2d>
         _jumpHeld &= Agent.CurrentFrameInput.JumpHeld;
 
         // vertical movement
-        _velocity.y += GetGravity() * delta;
-        if (Mathf.Abs(_velocity.y) > Agent.PlayerVariables.MaxAirVelocity)
-        {
-            _velocity.y = Agent.PlayerVariables.MaxAirVelocity * Mathf.Sign(_velocity.y);
-        }
-
+        _velocity.y = StateBehaviour.CalculateVerticalVelocity(
+           _velocity.y,
+           Agent.PlayerVariables.MaxAirVelocity,
+           GetGravity,
+           delta);
         // horizontalMovement
-        float targetHorizontalVelocity;
-        float acceleration;
-
-        if (Agent.CurrentFrameInput.Direction.x != 0) // moving, accelerate to target speed
-        {
-            targetHorizontalVelocity = Agent.CurrentFrameInput.Direction.x * Agent.PlayerVariables.AirSpeed;
-            acceleration = Agent.PlayerVariables.AirAcceleration;
-        }
-        else // not moving, decelerate to zero
-        {
-            targetHorizontalVelocity = 0;
-            acceleration = Agent.PlayerVariables.GroundDeceleration;
-        }
-
-        var diff = targetHorizontalVelocity - _velocity.x;
-
-        if (Mathf.Abs(diff) > acceleration) // if we won't go over the target speed, accelerate
-        {
-            _velocity.x += Mathf.Sign(diff) * acceleration * delta;
-        }
-        else // if we would go over the target speed, just set it to the target speed
-        {
-            _velocity.x = targetHorizontalVelocity;
-        }
+        _velocity.x = StateBehaviour.CalculateHorizontalVelocity(
+            _velocity.x,
+            Agent.CurrentFrameInput.Direction.x * Agent.PlayerVariables.AirSpeed,
+            Agent.PlayerVariables.AirAcceleration,
+            Agent.PlayerVariables.AirDeceleration,
+            delta);
 
 
         Agent.MovementComponent.SetVelocity(MovementComponent.VelocityType.MainMovement, _velocity);

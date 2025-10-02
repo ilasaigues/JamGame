@@ -45,30 +45,14 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
     protected override void FixedUpdateStateInternal(float delta)
     {
 
-        float targetHorizontalVelocity;
-        float acceleration;
+        // horizontalMovement
+        _horizontalVelocity = StateBehaviour.CalculateHorizontalVelocity(
+            _horizontalVelocity,
+            Agent.CurrentFrameInput.Direction.x * Agent.PlayerVariables.GroundSpeed,
+            Agent.PlayerVariables.GroundAcceleration,
+            Agent.PlayerVariables.GroundDeceleration,
+            delta);
 
-        if (Agent.CurrentFrameInput.Direction.x != 0) // moving, accelerate to target speed
-        {
-            targetHorizontalVelocity = Agent.CurrentFrameInput.Direction.x * Agent.PlayerVariables.GroundSpeed;
-            acceleration = Agent.PlayerVariables.GroundAcceleration;
-        }
-        else // not moving, decelerate to zero
-        {
-            targetHorizontalVelocity = 0;
-            acceleration = Agent.PlayerVariables.GroundDeceleration;
-        }
-
-        var diff = targetHorizontalVelocity - _horizontalVelocity;
-
-        if (Mathf.Abs(diff) > acceleration * delta) // if we won't go over the target speed, accelerate
-        {
-            _horizontalVelocity += Mathf.Sign(diff) * acceleration * delta;
-        }
-        else // if we would go over the target speed, just set it to the target speed
-        {
-            _horizontalVelocity = targetHorizontalVelocity;
-        }
         Agent.MovementComponent.SetVelocity(MovementComponent.VelocityType.MainMovement, Vector2.right * _horizontalVelocity);
 
     }

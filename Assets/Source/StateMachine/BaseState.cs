@@ -9,17 +9,6 @@ public interface IState
     void ExitState();
 }
 
-public class StateChangeRequest
-{
-    public Type StateType;
-    public StateConfig.IBaseStateConfig[] Configs;
-
-    public StateChangeRequest(Type newStateType, params StateConfig.IBaseStateConfig[] newConfigs)
-    {
-        this.StateType = newStateType;
-        this.Configs = newConfigs;
-    }
-}
 
 public abstract class BaseState : MonoBehaviour, IState
 {
@@ -30,7 +19,6 @@ public abstract class BaseState : MonoBehaviour, IState
     public virtual void EnterState(params StateConfig.IBaseStateConfig[] configs)
     {
         CheckForStateMachine();
-        Debug.Log("Entering state " + GetType());
         Active = true;
         EnterStateInternal(configs);
     }
@@ -93,5 +81,16 @@ public abstract class BaseState<T> : BaseState where T : MonoBehaviour
             throw new UnassignedReferenceException(nameof(baseStateMachine));
         }
         StateMachine.SetNextState(new StateChangeRequest(typeof(newStateType), configs));
+    }
+}
+public class StateChangeRequest
+{
+    public Type StateType;
+    public StateConfig.IBaseStateConfig[] Configs;
+
+    public StateChangeRequest(Type newStateType, params StateConfig.IBaseStateConfig[] newConfigs)
+    {
+        this.StateType = newStateType;
+        this.Configs = newConfigs;
     }
 }
