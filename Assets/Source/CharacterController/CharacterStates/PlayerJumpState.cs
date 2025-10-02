@@ -10,6 +10,7 @@ public class PlayerJumpState : BaseState<CharacterController2d>
     {
         InitFromConfigs(configs);
         _jumpHeld = true;
+        Agent.RuntimeVars.UsedJumps++;
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -38,6 +39,11 @@ public class PlayerJumpState : BaseState<CharacterController2d>
         if (ReachedApex())
         {
             ChangeState<PlayerAirState>(new StateConfig.StartingVelocityConfig(_velocity));
+            return;
+        }
+        if (CheckCanJump())
+        {
+            ChangeState<PlayerJumpState>(new StateConfig.StartingVelocityConfig(new Vector2(_velocity.x, Agent.PlayerVariables.JumpSpeed)));
         }
     }
 
@@ -85,5 +91,10 @@ public class PlayerJumpState : BaseState<CharacterController2d>
     private bool IsGrounded()
     {
         return _velocity.y < 0 && Agent.MovementComponent.IsAgainstGround;
+    }
+
+    private bool CheckCanJump()
+    {
+        return Agent.RuntimeVars.CanJump && Agent.CurrentFrameInput.JumpPressedThisFrame;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using AstralCore;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
         InitFromConfigs(configs);
         Agent.MovementComponent.SetVelocity(MovementComponent.VelocityType.Gravity, Vector2.zero);
         _horizontalVelocity = Agent.MovementComponent.GetVelocity(MovementComponent.VelocityType.MainMovement).x;
+        //reset jump
+        Agent.RuntimeVars.UsedJumps = 0;
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -32,10 +35,11 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
     {
         if (!IsGrounded())
         {
+            Agent.RuntimeVars.TimeLastLeftGround = DateTime.Now;
             ChangeState<PlayerAirState>(new StateConfig.StartingVelocityConfig(Vector2.right * _horizontalVelocity));
             return;
         }
-        if (CheckJump())
+        if (CheckCanJump())
         {
             ChangeState<PlayerJumpState>(new StateConfig.StartingVelocityConfig(new Vector2(_horizontalVelocity, Agent.PlayerVariables.JumpSpeed)));
             return;
@@ -62,8 +66,10 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
         return Agent.MovementComponent.IsAgainstGround;
     }
 
-    private bool CheckJump()
+    private bool CheckCanJump()
     {
-        return Agent.CurrentFrameInput.JumpPressedThisFrame;
+        return Agent.RuntimeVars.CanJump &&
+            (Agent.CurrentFrameInput.JumpPressedThisFrame || // Jump was pressed this frame or...
+            (DateTime.Now - Agent.CurrentFrameInput.JumpPressedTime).TotalSeconds <= Agent.PlayerVariables.BufferTime); // ... was pressed recently
     }
 }

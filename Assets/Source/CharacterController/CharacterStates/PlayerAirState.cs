@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -29,6 +30,11 @@ public class PlayerAirState : BaseState<CharacterController2d>
         if (IsGrounded())
         {
             ChangeState<PlayerGroundedState>();
+            return;
+        }
+        if (CheckCanJump())
+        {
+            ChangeState<PlayerJumpState>(new StateConfig.StartingVelocityConfig(new Vector2(_velocity.x, Agent.PlayerVariables.JumpSpeed)));
             return;
         }
     }
@@ -63,5 +69,11 @@ public class PlayerAirState : BaseState<CharacterController2d>
     private bool IsGrounded()
     {
         return Agent.MovementComponent.IsAgainstGround;
+    }
+    private bool CheckCanJump()
+    {
+        return Agent.RuntimeVars.CanJump &&
+            Agent.CurrentFrameInput.JumpPressedThisFrame &&
+            (DateTime.Now - Agent.RuntimeVars.TimeLastLeftGround).TotalSeconds <= Agent.PlayerVariables.CoyoteTime;
     }
 }

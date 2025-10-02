@@ -15,8 +15,8 @@ public class PlayerVariables : ScriptableObject
     public float MaxAirVelocity;
     [Header("Jump")]
     public float JumpSpeed;
-    public float JumpMinTime;
-    public float JumpMaxTime;
+    public float BufferTime;
+    public float CoyoteTime;
     [Header("Gravities")]
     public float JumpGravity;
     public float JumpGravityThreshold;
