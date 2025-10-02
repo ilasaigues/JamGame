@@ -13,7 +13,7 @@ public abstract class StateMachine<T> : BaseStateMachine where T : MonoBehaviour
 
     private BaseState<T> _currentState = null;
     private StateChangeRequest _changeStateRequest;
-    public T Agent;
+    public T Agent { get; protected set; }
     public void SetAgent(T agent)
     {
         Agent = agent;
@@ -31,20 +31,20 @@ public abstract class StateMachine<T> : BaseStateMachine where T : MonoBehaviour
         _changeStateRequest = newRequest;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (_currentState is { Active: false })
-        {
-            _currentState.EnterState();
-        }
-
-        _currentState?.FixedUpdateState(FixedDeltaTime);
+        _currentState?.UpdateState(DeltaTime);
 
         if (_changeStateRequest != null)
         {
             ChangeToNextState();
             _changeStateRequest = null;
         }
+    }
+
+    void FixedUpdate()
+    {
+        _currentState?.FixedUpdateState(FixedDeltaTime);
     }
 
     private void ChangeToNextState()

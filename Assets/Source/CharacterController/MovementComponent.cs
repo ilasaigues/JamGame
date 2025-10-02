@@ -6,13 +6,13 @@ using AstralCore;
 public class MovementComponent : TimeboundMonoBehaviour
 {
 
-    public bool IsAgainstFloor { get; set; }
-    public bool IsAgainstWall { get; set; }
-    public bool IsAgainstCeiling { get; set; }
+    public bool IsAgainstGround => GroundCollisions.Count > 0;
+    public bool IsAgainstWall => WallCollisions.Count > 0;
+    public bool IsAgainstCeiling => CeilingCollisions.Count > 0;
 
-    private readonly List<Collision2D> CeilingCollisions = new();
-    private readonly List<Collision2D> GroundCollisions = new();
-    private readonly List<Collision2D> WallCollisions = new();
+    [SerializeField] private List<Collider2D> CeilingCollisions = new();
+    [SerializeField] private List<Collider2D> GroundCollisions = new();
+    [SerializeField] private List<Collider2D> WallCollisions = new();
 
     public enum VelocityType
     {
@@ -47,44 +47,32 @@ public class MovementComponent : TimeboundMonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        ContactPoint2D[] contactPoints = { };
+        Debug.Log("Contacts: " + collision.contactCount);
+        ContactPoint2D[] contactPoints = new ContactPoint2D[collision.contactCount];
         collision.GetContacts(contactPoints);
         foreach (var contactPoint in contactPoints)
         {
-            if (contactPoint.normal.y > 0.5f) // ground touch
+            Debug.Log(contactPoint.normal);
+            if (contactPoint.normal.y > 0.5f && !GroundCollisions.Contains(collision.collider)) // ground touch
             {
-                GroundCollisions.Add(collision);
+                GroundCollisions.Add(collision.collider);
             }
-            else if (contactPoint.normal.y < -0.5f) // ceiling touch
+            else if (contactPoint.normal.y < -0.5f && !CeilingCollisions.Contains(collision.collider)) // ceiling touch
             {
-                CeilingCollisions.Add(collision);
+                CeilingCollisions.Add(collision.collider);
             }
-            else // assume wall touch
+            else if (!WallCollisions.Contains(collision.collider)) // assume wall touch
             {
-                WallCollisions.Add(collision);
+                WallCollisions.Add(collision.collider);
             }
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        ContactPoint2D[] contactPoints = { };
-        collision.GetContacts(contactPoints);
-        foreach (var contactPoint in contactPoints)
-        {
-            if (contactPoint.normal.y > 0.5f) // ground touch
-            {
-                GroundCollisions.Remove(collision);
-            }
-            else if (contactPoint.normal.y < -0.5f) // ceiling touch
-            {
-                CeilingCollisions.Remove(collision);
-            }
-            else // assume wall touch
-            {
-                WallCollisions.Remove(collision);
-            }
-        }
+        GroundCollisions.Remove(collision.collider);
+        CeilingCollisions.Remove(collision.collider);
+        WallCollisions.Remove(collision.collider);
     }
 
     public void PhysicsMove(Rigidbody2D rb)

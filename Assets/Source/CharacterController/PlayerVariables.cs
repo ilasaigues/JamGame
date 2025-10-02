@@ -12,12 +12,17 @@ public class PlayerVariables : ScriptableObject
     public float AirSpeed;
     public float AirAcceleration;
     public float AirDeceleration;
-    public float Gravity;
+    public float MaxAirVelocity;
     [Header("Jump")]
     public float JumpSpeed;
-    public float JumpGravity;
     public float JumpMinTime;
     public float JumpMaxTime;
+    [Header("Gravities")]
+    public float JumpGravity;
+    public float JumpGravityThreshold;
+    public float ApexGravity;
+    public float ApexGravityThreshold;
+    public float Gravity;
     [Header("Input")]
     public InputActionReference JumpInput;
     public InputActionReference MoveInput;

@@ -25,28 +25,37 @@ public abstract class BaseState : MonoBehaviour, IState
 {
     public bool Active { get; set; }
 
-    public BaseStateMachine baseStateMachine;
+    public BaseStateMachine baseStateMachine { get; protected set; }
 
     public virtual void EnterState(params StateConfig.IBaseStateConfig[] configs)
     {
-        if (baseStateMachine == null)
-        {
-            throw new UnassignedReferenceException(nameof(baseStateMachine));
-        }
+        CheckForStateMachine();
+        Debug.Log("Entering state " + GetType());
         Active = true;
         EnterStateInternal(configs);
     }
 
     protected abstract void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs);
+    public void UpdateState(float delta)
+    {
+        CheckForStateMachine();
+        UpdateStateInternal(delta);
+    }
     public void FixedUpdateState(float delta)
+    {
+        CheckForStateMachine();
+        FixedUpdateStateInternal(delta);
+    }
+    protected abstract void UpdateStateInternal(float delta);
+    protected abstract void FixedUpdateStateInternal(float delta);
+
+    void CheckForStateMachine()
     {
         if (baseStateMachine == null)
         {
             throw new UnassignedReferenceException(nameof(baseStateMachine));
         }
-        FixedUpdateStateInternal(delta);
     }
-    protected abstract void FixedUpdateStateInternal(double delta);
 
     public void ExitState()
     {
@@ -77,7 +86,7 @@ public abstract class BaseState<T> : BaseState where T : MonoBehaviour
         baseStateMachine = StateMachine = newStateMachine;
     }
 
-    protected virtual void ChangeState<newStateType>(params StateConfig.IBaseStateConfig[] configs) where newStateType : BaseState<newStateType>
+    protected virtual void ChangeState<newStateType>(params StateConfig.IBaseStateConfig[] configs) where newStateType : BaseState<T>
     {
         if (StateMachine == null)
         {
