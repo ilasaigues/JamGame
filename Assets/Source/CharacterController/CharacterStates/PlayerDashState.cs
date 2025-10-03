@@ -3,11 +3,11 @@ using UnityEngine;
 public class PlayerDashState : BaseState<CharacterController2d>
 {
     float _velocity = 0;
-    Vector2 _startPos;
+    float _remainingDistance;
     protected override void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs)
     {
         InitFromConfigs(configs);
-        _startPos = Agent.transform.position;
+        _remainingDistance = Agent.PlayerVariables.DashDistance;
         Agent.RuntimeVars.CanDash = false;
     }
 
@@ -29,8 +29,8 @@ public class PlayerDashState : BaseState<CharacterController2d>
     protected override void FixedUpdateStateInternal(float delta)
     {
         Agent.MovementComponent.SetVelocity(Vector2.right * _velocity);
-
-        if (Vector2.Distance(_startPos, Agent.transform.position) > Agent.PlayerVariables.DashDistance)
+        _remainingDistance -= Mathf.Abs(_velocity * delta);
+        if (_remainingDistance <= 0)
         {
             Agent.CharacterStateMachine.SetNextState(
                 new StateChangeRequest(Agent.MovementComponent.IsAgainstGround ?
