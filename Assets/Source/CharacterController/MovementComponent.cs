@@ -53,7 +53,7 @@ public class MovementComponent : TimeboundMonoBehaviour
 
     public void PhysicsMove(Rigidbody2D rb)
     {
-        rb.linearVelocity = CurrentVelocity;
+        rb.linearVelocity = CurrentVelocity * _timeContext.FixedDeltaTimeMultiplier;
     }
 
 }

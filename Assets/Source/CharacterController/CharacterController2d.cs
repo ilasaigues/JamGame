@@ -1,11 +1,10 @@
 using System;
-using System.Runtime.CompilerServices;
-using UnityEditor.Experimental.GraphView;
+using AstralCore;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MovementComponent), typeof(Rigidbody2D))]
-public class CharacterController2d : MonoBehaviour
+public class CharacterController2d : TimeboundMonoBehaviour
 {
     public class RuntimeVariables
     {
@@ -103,7 +102,7 @@ public class CharacterController2d : MonoBehaviour
         }
     }
 
-    private void SetCurrentPowerup(PowerupType powerupType)
+    public void SetCurrentPowerup(PowerupType powerupType)
     {
         BasePowerup newPowerup = null;
         switch (powerupType)

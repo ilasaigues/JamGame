@@ -7,28 +7,16 @@ namespace AstralCore
     public class ScriptableTimeContext : ScriptableObject, ITimeContext
     {
 
-        [SerializeField]
-        private float _deltaTimeMultiplier;
-        [SerializeField]
-        private float _fixedDeltaTimeMultiplier;
+        public float DeltaTimeMultiplier;
+        public float FixedDeltaTimeMultiplier;
 
         private bool _paused;
 
-        public float DeltaTime => _paused ? 0 : _deltaTimeMultiplier * Time.deltaTime;
+        public float DeltaTime => _paused ? 0 : DeltaTimeMultiplier * Time.deltaTime;
 
-        public float FixedDeltaTime => _paused ? 0 : _fixedDeltaTimeMultiplier * Time.fixedDeltaTime;
+        public float FixedDeltaTime => _paused ? 0 : FixedDeltaTimeMultiplier * Time.fixedDeltaTime;
 
         public System.Action<bool> OnPause = new System.Action<bool>(p => { });
-
-        public void SetDeltaTimeMultiplier(float multiplier)
-        {
-            _deltaTimeMultiplier = multiplier;
-        }
-
-        public void SetFixedDeltaTimeMultiplier(float multiplier)
-        {
-            _fixedDeltaTimeMultiplier = multiplier;
-        }
 
         public void TogglePause()
         {
