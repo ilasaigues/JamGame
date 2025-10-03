@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class CharacterController2d : MonoBehaviour
         public int UsedJumps = 0;
         public int MaxJumps = 1;
         public DateTime TimeLastLeftGround = DateTime.MinValue;
+        public bool CanDash = false;
     }
     public struct FrameInput
     {
@@ -19,6 +21,16 @@ public class CharacterController2d : MonoBehaviour
         public DateTime JumpPressedTime;
         public bool JumpHeld;
         public Vector2 Direction;
+        public Vector2 LastNonZeroHorizontalDirection;
+    }
+
+    public enum PowerupType
+    {
+        None = 0,
+        DoubleJump = 1,
+        Dash = 2,
+        Hover = 3,
+        StoneSkin = 4,
     }
 
     public PlayerVariables PlayerVariables;
@@ -35,6 +47,12 @@ public class CharacterController2d : MonoBehaviour
 
     public RuntimeVariables RuntimeVars = new();
 
+    //---------
+    private readonly DashPowerup DashPowerup = new();
+    private readonly DoubleJumpPowerup DoubleJumpPowerup = new();
+    private readonly HoverPowerup HoverPowerup = new();
+    private readonly StoneSkinPowerup StoneSkinPowerup = new();
+    private BasePowerup CurrentPowerup = null;
 
     private void Awake()
     {
@@ -50,6 +68,28 @@ public class CharacterController2d : MonoBehaviour
 
     private void Update()
     {
+        //TEMP
+        if (Keyboard.current[Key.Digit0].wasPressedThisFrame)
+        {
+            SetCurrentPowerup(PowerupType.None);
+        }
+        else if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
+        {
+            SetCurrentPowerup(PowerupType.DoubleJump);
+        }
+        else if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
+        {
+            SetCurrentPowerup(PowerupType.Dash);
+        }
+        else if (Keyboard.current[Key.Digit3].wasPressedThisFrame)
+        {
+            SetCurrentPowerup(PowerupType.Hover);
+        }
+        else if (Keyboard.current[Key.Digit4].wasPressedThisFrame)
+        {
+            SetCurrentPowerup(PowerupType.StoneSkin);
+        }
+        //TEMP
         CurrentFrameInput.JumpPressedThisFrame = PlayerVariables.JumpInput.action.WasPressedThisFrame();
         if (CurrentFrameInput.JumpPressedThisFrame)
         {
@@ -57,6 +97,36 @@ public class CharacterController2d : MonoBehaviour
         }
         CurrentFrameInput.JumpHeld = PlayerVariables.JumpInput.action.IsPressed();
         CurrentFrameInput.Direction = PlayerVariables.MoveInput.action.ReadValue<Vector2>();
+        if (CurrentFrameInput.Direction.x != 0)
+        {
+            CurrentFrameInput.LastNonZeroHorizontalDirection = CurrentFrameInput.Direction;
+        }
+    }
+
+    private void SetCurrentPowerup(PowerupType powerupType)
+    {
+        BasePowerup newPowerup = null;
+        switch (powerupType)
+        {
+            case PowerupType.DoubleJump:
+                newPowerup = DoubleJumpPowerup;
+                break;
+            case PowerupType.Dash:
+                newPowerup = DashPowerup;
+                break;
+            case PowerupType.Hover:
+                newPowerup = HoverPowerup;
+                break;
+            case PowerupType.StoneSkin:
+                newPowerup = StoneSkinPowerup;
+                break;
+        }
+        if (CurrentPowerup != newPowerup)
+        {
+            CurrentPowerup?.Unapply();
+            CurrentPowerup = newPowerup;
+            CurrentPowerup?.Apply(this, CharacterStateMachine);
+        }
     }
 
     private void FixedUpdate()

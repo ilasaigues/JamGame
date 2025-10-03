@@ -18,9 +18,9 @@ public static class StateBehaviour
 
         var diff = targetVelocity - current;
 
-        if (Mathf.Abs(diff) > acceleration * delta) // if we won't go over the target speed, accelerate
+        if (Mathf.Abs(diff) > chosenAcceleration * delta) // if we won't go over the target speed, accelerate
         {
-            return current + Mathf.Sign(diff) * acceleration * delta;
+            return current + Mathf.Sign(diff) * chosenAcceleration * delta;
         }
         else // if we would go over the target speed, just set it to the target speed
         {

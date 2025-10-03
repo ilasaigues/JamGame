@@ -68,7 +68,7 @@ public class PlayerJumpState : BaseState<CharacterController2d>
             delta);
 
 
-        Agent.MovementComponent.SetVelocity(MovementComponent.VelocityType.MainMovement, _velocity);
+        Agent.MovementComponent.SetVelocity(_velocity);
     }
 
     float GetGravity()

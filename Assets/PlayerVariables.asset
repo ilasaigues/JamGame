@@ -22,10 +22,14 @@ MonoBehaviour:
   JumpSpeed: 20
   BufferTime: 0.16666667
   CoyoteTime: 0.16666667
+  DashVelocity: 50
+  DashDistance: 3
   JumpGravity: -30
   JumpGravityThreshold: 0.5
   ApexGravity: -5
   ApexGravityThreshold: -0.5
   Gravity: -50
+  StoneSkinGravity: -60
   JumpInput: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   MoveInput: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  SpecialInput: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

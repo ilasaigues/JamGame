@@ -14,38 +14,14 @@ public class MovementComponent : TimeboundMonoBehaviour
     [SerializeField] private List<Collider2D> GroundCollisions = new();
     [SerializeField] private List<Collider2D> WallCollisions = new();
 
-    public enum VelocityType
+    public Vector2 CurrentVelocity { get; private set; }
+    public void SetVelocity(Vector2 velocity)
     {
-        MainMovement,
-        Gravity,
-        InheritedVelocity,
-        Dash,
-    }
-    private readonly Dictionary<VelocityType, Vector2> Velocities = new();
-
-    public Vector2 CurrentVelocity => Velocities.Values.AsEnumerable()
-        .Append(Vector2.zero)
-        .Aggregate((v1, v2) => v1 + v2);
-
-
-    public Vector2 GetVelocity(VelocityType type)
-    {
-        return Velocities.ContainsKey(type) ? Velocities[type] : Vector2.zero;
-    }
-    public void SetVelocity(VelocityType type, Vector2 velocity)
-    {
-        Velocities[type] = velocity;
+        CurrentVelocity = velocity;
     }
 
-    public void Awake()
-    {
-        Velocities.Add(VelocityType.MainMovement, Vector2.zero);
-        Velocities.Add(VelocityType.Gravity, Vector2.zero);
-        Velocities.Add(VelocityType.InheritedVelocity, Vector2.zero);
-        Velocities.Add(VelocityType.Dash, Vector2.zero);
-    }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         Debug.Log("Contacts: " + collision.contactCount);
         ContactPoint2D[] contactPoints = new ContactPoint2D[collision.contactCount];

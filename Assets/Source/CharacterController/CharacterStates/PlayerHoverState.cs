@@ -1,8 +1,7 @@
-using System;
-using Unity.Mathematics;
+
 using UnityEngine;
 
-public class PlayerAirState : BaseState<CharacterController2d>
+public class PlayerHoverState : BaseState<CharacterController2d>
 {
     Vector2 _velocity;
     protected override void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs)
@@ -32,21 +31,12 @@ public class PlayerAirState : BaseState<CharacterController2d>
             ChangeState<PlayerGroundedState>();
             return;
         }
-        if (CheckCanJump())
-        {
-            ChangeState<PlayerJumpState>(new StateConfig.StartingVelocityConfig(new Vector2(_velocity.x, Agent.PlayerVariables.JumpSpeed)));
-            return;
-        }
     }
 
     protected override void FixedUpdateStateInternal(float delta)
     {
         // vertical movement
-        _velocity.y = StateBehaviour.CalculateVerticalVelocity(
-           _velocity.y,
-           Agent.PlayerVariables.MaxAirVelocity,
-           GetGravity,
-           delta);
+        _velocity.y = 0;
         // horizontalMovement
         _velocity.x = StateBehaviour.CalculateHorizontalVelocity(
             _velocity.x,
@@ -59,22 +49,8 @@ public class PlayerAirState : BaseState<CharacterController2d>
         Agent.MovementComponent.SetVelocity(_velocity);
     }
 
-    float GetGravity() => _velocity switch
-    {
-        { y: var Y } when Y >= Agent.PlayerVariables.JumpGravityThreshold => Agent.PlayerVariables.JumpGravity,
-        { y: var Y } when Y >= Agent.PlayerVariables.ApexGravityThreshold => Agent.PlayerVariables.ApexGravity,
-        { y: _ } => Agent.PlayerVariables.Gravity,
-    };
-
     private bool IsGrounded()
     {
         return Agent.MovementComponent.IsAgainstGround;
-    }
-    private bool CheckCanJump()
-    {
-        return Agent.RuntimeVars.CanJump &&
-            Agent.CurrentFrameInput.JumpPressedThisFrame &&
-            (Agent.RuntimeVars.MaxJumps > 1 ||
-            (DateTime.Now - Agent.RuntimeVars.TimeLastLeftGround).TotalSeconds <= Agent.PlayerVariables.CoyoteTime);
     }
 }

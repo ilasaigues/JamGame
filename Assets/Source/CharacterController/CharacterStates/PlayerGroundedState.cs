@@ -10,10 +10,10 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
     protected override void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs)
     {
         InitFromConfigs(configs);
-        Agent.MovementComponent.SetVelocity(MovementComponent.VelocityType.Gravity, Vector2.zero);
-        _horizontalVelocity = Agent.MovementComponent.GetVelocity(MovementComponent.VelocityType.MainMovement).x;
+        _horizontalVelocity = Agent.MovementComponent.CurrentVelocity.x;
         //reset jump
         Agent.RuntimeVars.UsedJumps = 0;
+        Agent.RuntimeVars.CanDash = true;
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -56,8 +56,9 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
             Agent.PlayerVariables.GroundAcceleration,
             Agent.PlayerVariables.GroundDeceleration,
             delta);
+        _horizontalVelocity = Mathf.Clamp(_horizontalVelocity, -Agent.PlayerVariables.GroundSpeed, Agent.PlayerVariables.GroundSpeed);
 
-        Agent.MovementComponent.SetVelocity(MovementComponent.VelocityType.MainMovement, Vector2.right * _horizontalVelocity);
+        Agent.MovementComponent.SetVelocity(Vector2.right * _horizontalVelocity);
 
     }
 

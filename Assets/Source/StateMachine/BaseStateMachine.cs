@@ -14,6 +14,10 @@ public abstract class StateMachine<T> : BaseStateMachine where T : MonoBehaviour
     private BaseState<T> _currentState = null;
     private StateChangeRequest _changeStateRequest;
     public T Agent { get; protected set; }
+    public bool IsInState<StateType>() where StateType : MonoBehaviour
+    {
+        return _currentState is StateType;
+    }
     public void SetAgent(T agent)
     {
         Agent = agent;

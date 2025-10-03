@@ -17,13 +17,19 @@ public class PlayerVariables : ScriptableObject
     public float JumpSpeed;
     public float BufferTime;
     public float CoyoteTime;
+    [Header("Dash")]
+    public float DashVelocity;
+    public float DashDistance;
+
     [Header("Gravities")]
     public float JumpGravity;
     public float JumpGravityThreshold;
     public float ApexGravity;
     public float ApexGravityThreshold;
     public float Gravity;
+    public float StoneSkinGravity;
     [Header("Input")]
     public InputActionReference JumpInput;
     public InputActionReference MoveInput;
+    public InputActionReference SpecialInput;
 }
