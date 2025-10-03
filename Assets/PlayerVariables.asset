@@ -20,8 +20,8 @@ MonoBehaviour:
   AirDeceleration: 30
   MaxAirVelocity: 10
   JumpSpeed: 20
-  JumpMinTime: 0
-  JumpMaxTime: 0
+  BufferTime: 0.16666667
+  CoyoteTime: 0.16666667
   JumpGravity: -30
   JumpGravityThreshold: 0.5
   ApexGravity: -5

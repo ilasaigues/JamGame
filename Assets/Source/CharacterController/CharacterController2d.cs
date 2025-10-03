@@ -21,16 +21,6 @@ public class CharacterController2d : MonoBehaviour
         public Vector2 Direction;
     }
 
-    /*
-    [x] Aceleración y deceleración  en piso y aire.
-    [x] Salto variable.
-    [x] Gravedad en salto, ápex y caida.
-    [ ] Coyote jump.
-    [ ] Buffer time.
-    [ ] Correccion para esquinas.
-    [ ] Collider variable segun el estado del salto.
-    */
-
     public PlayerVariables PlayerVariables;
     //---------
 

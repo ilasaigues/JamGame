@@ -28,6 +28,10 @@ public abstract class StateMachine<T> : BaseStateMachine where T : MonoBehaviour
 
     public void SetNextState(StateChangeRequest newRequest)
     {
+        if (_changeStateRequest != null) // another state was queued first, tough luck
+        {
+            return;
+        }
         _changeStateRequest = newRequest;
     }
 
