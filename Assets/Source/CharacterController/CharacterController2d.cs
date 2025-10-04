@@ -177,6 +177,9 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         // play respawn animation
         // WAIT UNTIL ANIMATION IS DONE
 
+        // reset powerup
+        SetCurrentPowerup(PowerupType.None);
+
         // re-enable controls
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerAirState), new StateConfig.StartingVelocityConfig(Vector2.zero)));
     }
