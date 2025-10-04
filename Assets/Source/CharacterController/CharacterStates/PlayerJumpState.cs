@@ -10,7 +10,16 @@ public class PlayerJumpState : BaseState<CharacterController2d>
     {
         InitFromConfigs(configs);
         _jumpHeld = true;
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Grounded, false);
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Rising, true);
+        if (Agent.RuntimeVars.UsedJumps > 0)
+        {
+            Agent.SetAnimatorTrigger(CharacterController2d.AnimationParameters.DoubleJumpTrigger);
+        }
+
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Rising, Agent.RuntimeVars.UsedJumps == 0);
         Agent.RuntimeVars.UsedJumps++;
+
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)

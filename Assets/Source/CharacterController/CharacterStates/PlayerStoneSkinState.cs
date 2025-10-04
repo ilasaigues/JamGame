@@ -6,6 +6,7 @@ public class PlayerStoneSkinState : BaseState<CharacterController2d>
     protected override void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs)
     {
         InitFromConfigs(configs);
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Stoneskin, true);
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -19,7 +20,10 @@ public class PlayerStoneSkinState : BaseState<CharacterController2d>
         }
     }
 
-    protected override void ExitStateInternal() { }
+    protected override void ExitStateInternal()
+    {
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Stoneskin, false);
+    }
     protected override void UpdateStateInternal(float delta) { }
 
     protected override void FixedUpdateStateInternal(float delta)

@@ -9,6 +9,8 @@ public class PlayerDashState : BaseState<CharacterController2d>
         InitFromConfigs(configs);
         _remainingDistance = Agent.PlayerVariables.DashDistance;
         Agent.RuntimeVars.CanDash = false;
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Dashing, true);
+
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -24,6 +26,7 @@ public class PlayerDashState : BaseState<CharacterController2d>
 
     protected override void ExitStateInternal()
     {
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Dashing, false);
     }
 
     protected override void FixedUpdateStateInternal(float delta)

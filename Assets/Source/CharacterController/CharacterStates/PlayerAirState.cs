@@ -8,6 +8,7 @@ public class PlayerAirState : BaseState<CharacterController2d>
     protected override void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs)
     {
         InitFromConfigs(configs);
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Grounded, false);
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -57,6 +58,13 @@ public class PlayerAirState : BaseState<CharacterController2d>
         _velocity.x = Mathf.Clamp(_velocity.x, -Agent.PlayerVariables.AirSpeed, Agent.PlayerVariables.AirSpeed);
 
         Agent.MovementComponent.SetVelocity(_velocity);
+
+        HandleAnimation();
+    }
+
+    private void HandleAnimation()
+    {
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Rising, _velocity.y > 0);
     }
 
     float GetGravity() => _velocity switch

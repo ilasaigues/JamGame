@@ -4,7 +4,7 @@ using AstralCore;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(MovementComponent), typeof(Rigidbody2D))]
+[RequireComponent(typeof(MovementComponent), typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 {
     public class RuntimeVariables
@@ -33,12 +33,25 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         StoneSkin = 4,
     }
 
+    public static class AnimationParameters
+    {
+        public static string Stoneskin = "Stoneskin";
+        public static string Grounded = "Grounded";
+        public static string Moving = "Moving";
+        public static string Dashing = "Dashing";
+        public static string Dead = "Dead";
+        public static string DoubleJumpTrigger = "DoubleJump";
+        public static string Rising = "Rising";
+        public static string Hovering = "Hovering";
+    }
+
     public PlayerVariables PlayerVariables;
     //---------
 
     public MovementComponent MovementComponent;
     private Rigidbody2D _rb;
-
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
     public FrameInput CurrentFrameInput = default;
 
 
@@ -61,6 +74,8 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         MovementComponent = GetComponent<MovementComponent>();
         CharacterStateMachine.SetAgent(this);
         _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -98,6 +113,7 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
             SetCurrentPowerup(PowerupType.StoneSkin);
         }
         //TEMP
+
         CurrentFrameInput.JumpPressedThisFrame = PlayerVariables.JumpInput.action.WasPressedThisFrame();
         if (CurrentFrameInput.JumpPressedThisFrame)
         {
@@ -109,6 +125,7 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         {
             CurrentFrameInput.LastNonZeroHorizontalDirection = CurrentFrameInput.Direction;
         }
+        _spriteRenderer.flipX = CurrentFrameInput.LastNonZeroHorizontalDirection.x < 0;
     }
 
     public void SetCurrentPowerup(PowerupType powerupType)
@@ -181,5 +198,15 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
         // re-enable controls
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerAirState), new StateConfig.StartingVelocityConfig(Vector2.zero)));
+    }
+
+    public void SetAnimationFlag(string animFlag, bool active)
+    {
+        _animator.SetBool(animFlag, active);
+    }
+
+    public void SetAnimatorTrigger(string animTrigger)
+    {
+        _animator.SetTrigger(animTrigger);
     }
 }

@@ -7,6 +7,8 @@ public class PlayerHoverState : BaseState<CharacterController2d>
     protected override void EnterStateInternal(params StateConfig.IBaseStateConfig[] configs)
     {
         InitFromConfigs(configs);
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Hovering, true);
+
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -22,7 +24,7 @@ public class PlayerHoverState : BaseState<CharacterController2d>
 
     protected override void ExitStateInternal()
     {
-
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Hovering, false);
     }
     protected override void UpdateStateInternal(float delta)
     {

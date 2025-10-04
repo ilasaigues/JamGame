@@ -8,6 +8,6 @@ public class DoubleJumpPowerup : BasePowerup
 
     protected override void UnapplyInternal()
     {
-        AppliedController.RuntimeVars.MaxJumps = 2;
+        AppliedController.RuntimeVars.MaxJumps = 1;
     }
 }

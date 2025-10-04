@@ -14,6 +14,8 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
         //reset jump
         Agent.RuntimeVars.UsedJumps = 0;
         Agent.RuntimeVars.CanDash = true;
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Rising, false);
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Grounded, true);
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -59,7 +61,12 @@ public class PlayerGroundedState : BaseState<CharacterController2d>
         _horizontalVelocity = Mathf.Clamp(_horizontalVelocity, -Agent.PlayerVariables.GroundSpeed, Agent.PlayerVariables.GroundSpeed);
 
         Agent.MovementComponent.SetVelocity(Vector2.right * _horizontalVelocity);
+        HandleAnimation();
+    }
 
+    private void HandleAnimation()
+    {
+        Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Moving, _horizontalVelocity != 0);
     }
 
     private bool IsGrounded()
