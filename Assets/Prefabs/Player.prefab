@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &305303423359868727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5988234604153783151}
+  - component: {fileID: 6849362746508676336}
+  m_Layer: 6
+  m_Name: DyingState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5988234604153783151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305303423359868727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2972830462954261812}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6849362746508676336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305303423359868727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c692314f90a591540ad3561144f6c1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDyingState
 --- !u!1 &1311656173904900504
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +300,7 @@ Transform:
   - {fileID: 4229691381327112272}
   - {fileID: 1405426552676464462}
   - {fileID: 6096914692149699369}
+  - {fileID: 5988234604153783151}
   m_Father: {fileID: 9139303136466678250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4005152740830139775
@@ -270,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc1dcab74c191a489c6ffe281c740ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacterStateMachine
-  _timeContext: {fileID: 0}
+  _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
 --- !u!1 &5931909052389940578
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf2d05d254d6914a833b23e9d1baa87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController2D
-  _timeContext: {fileID: 11400000, guid: 85afe9c50c2d4bb428586c69dcc35c3c, type: 2}
+  _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
   PlayerVariables: {fileID: 11400000, guid: b58007679b6d2004d931195cb8dd1c07, type: 2}
   MovementComponent: {fileID: 0}
   CharacterStateMachine: {fileID: 4005152740830139775}
@@ -458,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96d878eede7a904490cc0697d599c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementComponent
-  _timeContext: {fileID: 11400000, guid: 85afe9c50c2d4bb428586c69dcc35c3c, type: 2}
+  _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
   CeilingCollisions: []
   GroundCollisions: []
   WallCollisions: []

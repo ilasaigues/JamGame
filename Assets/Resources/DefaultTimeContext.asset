@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c418bdcff0f91e46a5d7b9c15bf1fce, type: 3}
   m_Name: DefaultTimeContext
   m_EditorClassIdentifier: AstralCore::AstralCore.ScriptableTimeContext
-  _deltaTimeMultiplier: 1
-  _fixedDeltaTimeMultiplier: 1
+  DeltaTimeMultiplier: 1
+  FixedDeltaTimeMultiplier: 1

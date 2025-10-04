@@ -10,25 +10,25 @@ namespace AstralCore
         public float DeltaTimeMultiplier;
         public float FixedDeltaTimeMultiplier;
 
-        private bool _paused;
+        public bool Paused { get; private set; }
 
-        public float DeltaTime => _paused ? 0 : DeltaTimeMultiplier * Time.deltaTime;
+        public float DeltaTime => Paused ? 0 : DeltaTimeMultiplier * Time.deltaTime;
 
-        public float FixedDeltaTime => _paused ? 0 : FixedDeltaTimeMultiplier * Time.fixedDeltaTime;
+        public float FixedDeltaTime => Paused ? 0 : FixedDeltaTimeMultiplier * Time.fixedDeltaTime;
 
         public System.Action<bool> OnPause = new System.Action<bool>(p => { });
 
         public void TogglePause()
         {
-            SetPause(_paused);
+            SetPause(Paused);
         }
 
         public void SetPause(bool pause)
         {
-            if (_paused == pause) return;
+            if (Paused == pause) return;
             else
             {
-                _paused = pause;
+                Paused = pause;
                 OnPause(pause);
             }
         }

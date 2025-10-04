@@ -23,12 +23,10 @@ public class MovementComponent : TimeboundMonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("Contacts: " + collision.contactCount);
         ContactPoint2D[] contactPoints = new ContactPoint2D[collision.contactCount];
         collision.GetContacts(contactPoints);
         foreach (var contactPoint in contactPoints)
         {
-            Debug.Log(contactPoint.normal);
             if (contactPoint.normal.y > 0.5f && !GroundCollisions.Contains(collision.collider)) // ground touch
             {
                 GroundCollisions.Add(collision.collider);

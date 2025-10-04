@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
 using AstralCore;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MovementComponent), typeof(Rigidbody2D))]
-public class CharacterController2d : TimeboundMonoBehaviour
+public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 {
     public class RuntimeVariables
     {
@@ -53,6 +54,8 @@ public class CharacterController2d : TimeboundMonoBehaviour
     private readonly StoneSkinPowerup StoneSkinPowerup = new();
     private BasePowerup CurrentPowerup = null;
 
+    private LevelController LevelController;
+
     private void Awake()
     {
         MovementComponent = GetComponent<MovementComponent>();
@@ -63,10 +66,16 @@ public class CharacterController2d : TimeboundMonoBehaviour
     private void Start()
     {
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerGroundedState)));
+        LevelController = FindFirstObjectByType<LevelController>();
+        if (LevelController == null)
+        {
+            AstralCore.Logger.LogWarning(LogCategory.Message, "NO LEVEL CONTROLLER FOUND, RESPAWN WON'T WORK");
+        }
     }
 
     private void Update()
     {
+        if (_timeContext.Paused) return;
         //TEMP
         if (Keyboard.current[Key.Digit0].wasPressedThisFrame)
         {
@@ -130,7 +139,45 @@ public class CharacterController2d : TimeboundMonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_timeContext.Paused) return;
         MovementComponent.PhysicsMove(_rb);
     }
 
+    public bool CanBeKilledBy(BaseHazard hazard)
+    {
+        // check for current state to see if hazard can actually kill
+
+        return !CharacterStateMachine.IsInState<PlayerDyingState>();
+    }
+
+    public IEnumerator Kill(BaseHazard hazard)
+    {
+        if (LevelController == null) yield break;
+        // disable controls (dying state?)
+        CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerDyingState)));
+
+        // play death animation
+        // WAIT UNTIL ANIMATION IS DONE
+
+
+        // check if this is your first death of that soul type
+        // ^ Save file handling required, check to see how many deaths of this type have happened
+        // ^ spawn death sprite and play dialogue if it is
+        // WAIT UNTIL DIALOGUE IS DONE
+
+        // drop soul
+        hazard.SpawnPickup();
+
+        // WAIT A BIT
+        yield return new WaitForSeconds(0.5f);
+
+        // move to respawn position
+        transform.position = LevelController.transform.position;
+
+        // play respawn animation
+        // WAIT UNTIL ANIMATION IS DONE
+
+        // re-enable controls
+        CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerAirState), new StateConfig.StartingVelocityConfig(Vector2.zero)));
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class PowerPickup : MonoBehaviour
 {
     public CharacterController2d.PowerupType powerupType;
