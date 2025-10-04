@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df3fbd2ef1e5a34eb1259844373b052, type: 3}
+  m_Name: PepitoAnimations
+  m_EditorClassIdentifier: Assembly-CSharp::PepitoAnimation
+  idle: {fileID: 7400000, guid: a680496147d280747a1afc6f5381a780, type: 2}
+  walk: {fileID: 7400000, guid: e69b048429fc01e44bd6ae0cef497a9c, type: 2}
+  jump: {fileID: 7400000, guid: 6e9fee0bff894c64c88f06e745fe6ebe, type: 2}
+  fall: {fileID: 7400000, guid: 7355093622b6ce244aeac4686005c2b3, type: 2}
+  doubleJump: {fileID: 7400000, guid: c061a11feb5125742810a18b4ecb0ea3, type: 2}
+  dash: {fileID: 7400000, guid: 6401cb00e01913348ab5c3a41dc8b71a, type: 2}
+  hover: {fileID: 7400000, guid: 1cea66e4b09a0c5479125359bc492725, type: 2}
+  stoneSkinOn: {fileID: 7400000, guid: e01899e6ebc9d7b41bfc76a5bd8aea01, type: 2}
+  stoneSkinOff: {fileID: 7400000, guid: a9d5b29f9f8474c4586377bfff3432f3, type: 2}
+  death: {fileID: 7400000, guid: 2157b8906902d0742a83dbff62d6da72, type: 2}
+  respawn: {fileID: 7400000, guid: c6cce2f5d8496a444b438cdb495d61d5, type: 2}
