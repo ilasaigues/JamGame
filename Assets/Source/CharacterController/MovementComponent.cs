@@ -51,7 +51,7 @@ public class MovementComponent : TimeboundMonoBehaviour
 
     public void PhysicsMove(Rigidbody2D rb)
     {
-        rb.linearVelocity = CurrentVelocity * _timeContext.FixedDeltaTimeMultiplier;
+        rb.linearVelocity = CurrentVelocity * (_timeContext.Paused ? 0 : 1);
     }
 
 }

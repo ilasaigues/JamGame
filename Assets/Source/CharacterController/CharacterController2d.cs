@@ -139,7 +139,6 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
     private void FixedUpdate()
     {
-        if (_timeContext.Paused) return;
         MovementComponent.PhysicsMove(_rb);
     }
 

@@ -330,6 +330,8 @@ GameObject:
   - component: {fileID: 4275079541895034530}
   - component: {fileID: 1598202903893355483}
   - component: {fileID: 6291631972145346015}
+  - component: {fileID: 5878861762490481345}
+  - component: {fileID: 2884812025203401228}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -347,7 +349,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.21052, y: -0.11202, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2972830462954261812}
@@ -400,7 +402,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 5711820192259859403, guid: 123bceb7f39132646be1a3006ea9b0b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -445,8 +447,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: -0.03125}
+  m_Size: {x: 0.625, y: 0.9375}
   m_Direction: 0
 --- !u!50 &4275079541895034530
 Rigidbody2D:
@@ -489,7 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController2D
   _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
   PlayerVariables: {fileID: 11400000, guid: b58007679b6d2004d931195cb8dd1c07, type: 2}
-  MovementComponent: {fileID: 0}
+  MovementComponent: {fileID: 6291631972145346015}
   CharacterStateMachine: {fileID: 4005152740830139775}
 --- !u!114 &6291631972145346015
 MonoBehaviour:
@@ -507,6 +509,42 @@ MonoBehaviour:
   CeilingCollisions: []
   GroundCollisions: []
   WallCollisions: []
+--- !u!95 &5878861762490481345
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931909052389940578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d1692288cb9a4f4f9bff1acd860ef48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2884812025203401228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931909052389940578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc468b23ff9857143b4780c91036fd76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AstralCore::AstralCore.AnimatorTimeContextualizer
+  _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
+  Component: {fileID: 0}
 --- !u!1 &7752418112828030639
 GameObject:
   m_ObjectHideFlags: 0

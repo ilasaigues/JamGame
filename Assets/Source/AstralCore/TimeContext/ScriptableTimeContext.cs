@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace AstralCore
@@ -7,11 +8,11 @@ namespace AstralCore
     public class ScriptableTimeContext : ScriptableObject, ITimeContext
     {
 
-        public float DeltaTimeMultiplier;
-        public float FixedDeltaTimeMultiplier;
+        public float DeltaTimeMultiplier = 1;
+        public float FixedDeltaTimeMultiplier = 1;
 
-        public bool Paused { get; private set; }
-
+        public bool Paused => _paused;
+        [NonSerialized] private bool _paused = false;
         public float DeltaTime => Paused ? 0 : DeltaTimeMultiplier * Time.deltaTime;
 
         public float FixedDeltaTime => Paused ? 0 : FixedDeltaTimeMultiplier * Time.fixedDeltaTime;
@@ -28,7 +29,7 @@ namespace AstralCore
             if (Paused == pause) return;
             else
             {
-                Paused = pause;
+                _paused = pause;
                 OnPause(pause);
             }
         }
