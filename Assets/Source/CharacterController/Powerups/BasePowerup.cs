@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public abstract class BasePowerup
 {
     protected CharacterController2d AppliedController;

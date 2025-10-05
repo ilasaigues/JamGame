@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace AstralCore
 {
+#if UNITY_EDITOR
     public class SceneImportSettings
     {
         [MenuItem("Tools/Populate SceneReferences")]
@@ -46,6 +47,6 @@ namespace AstralCore
         }
     }
 
-
+#endif
 
 }

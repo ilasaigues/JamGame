@@ -1,4 +1,3 @@
-using System;
 using UnityEngine.InputSystem;
 
 public class StoneSkinPowerup : BasePowerup

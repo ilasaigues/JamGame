@@ -1,5 +1,3 @@
-
-using System;
 using UnityEngine.InputSystem;
 
 public class DashPowerup : BasePowerup

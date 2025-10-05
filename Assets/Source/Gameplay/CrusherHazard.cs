@@ -1,6 +1,4 @@
-using System.Collections;
 using AstralCore;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]

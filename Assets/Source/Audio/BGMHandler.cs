@@ -1,13 +1,9 @@
 using UnityEngine;
-using FMOD;
 using FMODUnity;
-using DG.Tweening;
-using FMOD.Studio;
-using System.Collections.Generic;
 
 public class BGMHandler : MonoBehaviour
 {
-   
+
     StudioEventEmitter bgm;
 
     void Start()

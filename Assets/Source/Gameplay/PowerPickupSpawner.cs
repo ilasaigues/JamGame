@@ -1,7 +1,5 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.U2D.Animation;
 
 public class PowerPickupSpawner : MonoBehaviour
 {
