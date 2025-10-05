@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using AstralCore;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -68,6 +70,16 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     private BasePowerup CurrentPowerup = null;
 
     private LevelController LevelController;
+
+    Dictionary<PowerupType, int> DeathCounts = new();
+
+    public int TotalDeaths => DeathCounts.Values.Sum();
+
+    [SerializeField] DialogueAsset FirstDeathDialogue;
+    [SerializeField] DialogueAsset FirstLaserDialogue;
+    [SerializeField] DialogueAsset FirstSpikesDialogue;
+    [SerializeField] DialogueAsset FirstCrusherDialogue;
+    [SerializeField] DialogueAsset FirstFireDialogue;
 
     private void Awake()
     {
@@ -184,17 +196,53 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
         // WAIT UNTIL ANIMATION IS DONE
 
+        if (TotalDeaths == 0) // first death
+        {
+            // D R A M A T I C pause
+            yield return new WaitForSeconds(2);
 
-        // check if this is your first death of that soul type
-        // ^ Save file handling required, check to see how many deaths of this type have happened
-        // ^ spawn death sprite and play dialogue if it is
+            // spawn death on hazard respawner location
+
+            // wait another second
+
+            // enqueue first death dialogue
+            LevelController.DialoguePlayer.EnqueueDialogue(FirstDeathDialogue);
+        }
+
+        if (!DeathCounts.TryGetValue(hazard.PowerupConfig.PowerupType, out var count))
+        {
+            yield return new WaitForSeconds(1);
+            DeathCounts[hazard.PowerupConfig.PowerupType] = 0;
+            // enqueue first death of type
+            switch (hazard.PowerupConfig.PowerupType)
+            {
+                case PowerupType.DoubleJump:
+                    LevelController.DialoguePlayer.EnqueueDialogue(FirstSpikesDialogue);
+                    break;
+                case PowerupType.Dash:
+                    LevelController.DialoguePlayer.EnqueueDialogue(FirstLaserDialogue);
+                    break;
+                case PowerupType.Hover:
+                    LevelController.DialoguePlayer.EnqueueDialogue(FirstFireDialogue);
+                    break;
+                case PowerupType.StoneSkin:
+                    LevelController.DialoguePlayer.EnqueueDialogue(FirstCrusherDialogue);
+                    break;
+            }
+        }
+
+        DeathCounts[hazard.PowerupConfig.PowerupType] = DeathCounts[hazard.PowerupConfig.PowerupType] + 1;
+
         // WAIT UNTIL DIALOGUE IS DONE
+        yield return new WaitUntil(() => !LevelController.DialoguePlayer.IsInDialogue);
 
         // drop soul
         hazard.SpawnPickup(transform.position);
 
         // WAIT A BIT
         yield return new WaitForSeconds(0.5f);
+
+
 
         // move to respawn position
         transform.position = LevelController.transform.position;

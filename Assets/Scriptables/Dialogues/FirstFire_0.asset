@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e052f5ee8292d54385a032b5caf3b51, type: 3}
+  m_Name: FirstFire_0
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  ActorSprite: {fileID: 21300000, guid: 60feea47a597fc6428aa98a7ea8619f9, type: 3}
+  ActorName: Death
+  Text: Blazing inferno?
+  NextDialogue: {fileID: 11400000, guid: d5c8629a3a6f1de48a3b22343c9f3473, type: 2}

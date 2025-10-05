@@ -493,6 +493,11 @@ MonoBehaviour:
   PlayerVariables: {fileID: 11400000, guid: b58007679b6d2004d931195cb8dd1c07, type: 2}
   MovementComponent: {fileID: 6291631972145346015}
   CharacterStateMachine: {fileID: 4005152740830139775}
+  FirstDeathDialogue: {fileID: 11400000, guid: cf36c115d53f92e48bbe9038530f163d, type: 2}
+  FirstLaserDialogue: {fileID: 11400000, guid: 9f52415c840659c4b8399b89f8fbe3f0, type: 2}
+  FirstSpikesDialogue: {fileID: 11400000, guid: d3cde06e21f74e9469ba3e8a491e6746, type: 2}
+  FirstCrusherDialogue: {fileID: 11400000, guid: 5c29efaef3c00bd4ca48a6e929b49fcb, type: 2}
+  FirstFireDialogue: {fileID: 11400000, guid: 66cdc9e118bd58e41b9f04fb66471296, type: 2}
 --- !u!114 &6291631972145346015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: AstralCore::AstralCore.AnimatorTimeContextualizer
   _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
-  Component: {fileID: 0}
 --- !u!1 &7752418112828030639
 GameObject:
   m_ObjectHideFlags: 0
