@@ -19,7 +19,7 @@ MonoBehaviour:
   AirAcceleration: 60
   AirDeceleration: 60
   MaxAirVelocity: 10
-  JumpSpeed: 25
+  JumpSpeed: 15
   BufferTime: 0.16666667
   CoyoteTime: 0.16666667
   DashVelocity: 50

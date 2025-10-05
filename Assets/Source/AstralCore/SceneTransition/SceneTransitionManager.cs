@@ -11,9 +11,16 @@ namespace AstralCore
     {
         [SerializeField] private Canvas TransitionCanvasContainer;
 
+        public static SceneTransitionManager Instance { get; private set; }
 
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                DestroyImmediate(gameObject);
+                return;
+            }
+            Instance = this;
             TransitionCanvasContainer = GetComponent<Canvas>();
             TransitionCanvasContainer.enabled = false;
         }
@@ -21,7 +28,7 @@ namespace AstralCore
         public async void TransitionToScene(SceneReference targetSceneReference, BaseSceneTransitionBehaviour transition)
         {
             //Declare the scene transition operation without awaiting it
-            var loadOperation = SceneManager.LoadSceneAsync(targetSceneReference.SceneName);
+            var loadOperation = SceneManager.LoadSceneAsync(targetSceneReference.ToString());
             //block scene activation preemptively
             loadOperation.allowSceneActivation = false;
             //enable the transition canvas

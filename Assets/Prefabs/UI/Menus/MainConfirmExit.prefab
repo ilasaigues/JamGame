@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7068248492920069848}
   - component: {fileID: 8452823336311661703}
   - component: {fileID: 8111135997181359353}
+  - component: {fileID: 962800104204636065}
   m_Layer: 5
   m_Name: MainConfirmExit
   m_TagString: Untagged
@@ -183,6 +184,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &962800104204636065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617122056361023190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e6c72060168fb468760c7839d0c191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuUI
+  sceneTransitionBehaviour: {fileID: 11400000, guid: 45812b76a07847a419d4bc891d3534a0, type: 2}
 --- !u!1 &5299996874733887029
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +381,34 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 469528122103057424}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 962800104204636065}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793943716031459079, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5820561636308819728, guid: 2356557c55dd0814dae3c22c16535468, type: 3}
       propertyPath: m_Name
       value: Button (2)

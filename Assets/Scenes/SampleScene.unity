@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381d8c1ec855ca843b0a1bcda5e550f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseHazard
+  _timeContext: {fileID: 0}
   powerPickupSpawner: {fileID: 769789762}
   PowerupConfig: {fileID: 11400000, guid: a09db8d841f4fc94e99c55b0c8cb450a, type: 2}
 --- !u!4 &342561521
@@ -368,7 +369,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!60 &342561523
@@ -1051,7 +1052,7 @@ Transform:
   m_GameObject: {fileID: 1440778035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21052, y: -0.11202, z: 0}
+  m_LocalPosition: {x: 1.5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2103,6 +2104,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1598202903893355483, guid: 29cf2fd45c6ab714ab8653ac12094649, type: 3}
+      propertyPath: bgm
+      value: 
+      objectReference: {fileID: 99247830}
     - target: {fileID: 5931909052389940578, guid: 29cf2fd45c6ab714ab8653ac12094649, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2113,7 +2118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9139303136466678250, guid: 29cf2fd45c6ab714ab8653ac12094649, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -1.392
       objectReference: {fileID: 0}
     - target: {fileID: 9139303136466678250, guid: 29cf2fd45c6ab714ab8653ac12094649, type: 3}
       propertyPath: m_LocalPosition.z
