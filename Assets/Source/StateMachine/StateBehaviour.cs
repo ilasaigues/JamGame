@@ -31,9 +31,9 @@ public static class StateBehaviour
     public static float CalculateVerticalVelocity(float current, float maxAirVelocity, Func<float> GravityGetter, float delta)
     {
         current += GravityGetter() * delta;
-        if (Mathf.Abs(current) > maxAirVelocity) // if the velocity would exceed the max, clamp it
+        if (current < -Mathf.Abs(maxAirVelocity)) // if the velocity would exceed the max, clamp it
         {
-            current = maxAirVelocity * Mathf.Sign(current);
+            current = -Mathf.Abs(maxAirVelocity);
         }
         return current;
     }
