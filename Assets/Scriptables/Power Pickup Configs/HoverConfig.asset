@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HoverConfig
   m_EditorClassIdentifier: Assembly-CSharp::PowerupConfig
   PowerupType: 3
-  PickupSprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  PickupSpriteLibrary: {fileID: 7108339969198208228, guid: c30749023ffc9284fa0ec52295275df8, type: 3}

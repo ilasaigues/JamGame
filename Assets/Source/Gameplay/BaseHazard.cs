@@ -26,9 +26,9 @@ public class BaseHazard : MonoBehaviour
         }
     }
 
-    public void SpawnPickup()
+    public void SpawnPickup(Vector2 position)
     {
-        powerPickupSpawner.SpawnPickup(PowerupConfig);
+        powerPickupSpawner.SpawnPickup(PowerupConfig, position);
     }
 
     void OnDrawGizmosSelected()

@@ -5,6 +5,8 @@ public abstract class BasePowerup
     protected CharacterController2d AppliedController;
     protected PlayerCharacterStateMachine AppliedStateMachine;
 
+    public abstract CharacterController2d.PowerupType PowerupType { get; }
+
     public void Apply(CharacterController2d characterController, PlayerCharacterStateMachine stateMachine)
     {
         AppliedController = characterController;

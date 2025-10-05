@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class DashPowerup : BasePowerup
 {
+    public override CharacterController2d.PowerupType PowerupType => CharacterController2d.PowerupType.Dash;
+
     protected override void ApplyInternal(CharacterController2d characterController, PlayerCharacterStateMachine stateMachine)
     {
         characterController.PlayerVariables.SpecialInput.action.performed += OnDashPressed;

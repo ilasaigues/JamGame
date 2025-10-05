@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DoubleJumpConfig
   m_EditorClassIdentifier: Assembly-CSharp::PowerupConfig
   PowerupType: 1
-  PickupSprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  PickupSpriteLibrary: {fileID: 7108339969198208228, guid: a979d3b99ff219d4dbf477731aa8adb0, type: 3}

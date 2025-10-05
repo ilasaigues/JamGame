@@ -128,6 +128,15 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         _spriteRenderer.flipX = CurrentFrameInput.LastNonZeroHorizontalDirection.x < 0;
     }
 
+    public bool CanTakePowerup(PowerPickup pickup)
+    {
+        if (CharacterStateMachine.IsInState<PlayerDyingState>() || (CurrentPowerup != null && CurrentPowerup.PowerupType == pickup.powerupType))
+        {
+            return false;
+        }
+        return true;
+    }
+
     public void SetCurrentPowerup(PowerupType powerupType)
     {
         BasePowerup newPowerup = null;
@@ -170,9 +179,9 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     {
         if (LevelController == null) yield break;
         // disable controls (dying state?)
+        // play death animation
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerDyingState)));
 
-        // play death animation
         // WAIT UNTIL ANIMATION IS DONE
 
 
@@ -182,7 +191,7 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         // WAIT UNTIL DIALOGUE IS DONE
 
         // drop soul
-        hazard.SpawnPickup();
+        hazard.SpawnPickup(transform.position);
 
         // WAIT A BIT
         yield return new WaitForSeconds(0.5f);
@@ -191,11 +200,12 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         transform.position = LevelController.transform.position;
 
         // play respawn animation
+        SetAnimationFlag(AnimationParameters.Dead, false);
         // WAIT UNTIL ANIMATION IS DONE
+        yield return new WaitForSeconds(1f);
 
         // reset powerup
         SetCurrentPowerup(PowerupType.None);
-
         // re-enable controls
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerAirState), new StateConfig.StartingVelocityConfig(Vector2.zero)));
     }

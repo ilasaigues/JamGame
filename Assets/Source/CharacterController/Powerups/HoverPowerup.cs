@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class HoverPowerup : BasePowerup
 {
+    public override CharacterController2d.PowerupType PowerupType => CharacterController2d.PowerupType.Hover;
     protected override void ApplyInternal(CharacterController2d characterController, PlayerCharacterStateMachine stateMachine)
     {
         characterController.PlayerVariables.SpecialInput.action.performed += OnHoverPressed;

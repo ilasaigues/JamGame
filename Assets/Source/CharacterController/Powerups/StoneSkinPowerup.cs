@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class StoneSkinPowerup : BasePowerup
 {
+    public override CharacterController2d.PowerupType PowerupType => CharacterController2d.PowerupType.StoneSkin;
     protected override void ApplyInternal(CharacterController2d characterController, PlayerCharacterStateMachine stateMachine)
     {
         characterController.PlayerVariables.SpecialInput.action.performed += OnStoneSkinPressed;

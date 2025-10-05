@@ -11,7 +11,6 @@ public class PlayerDyingState : BaseState<CharacterController2d>
     protected override void ExitStateInternal()
     {
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Dead, false);
-
     }
 
     protected override void FixedUpdateStateInternal(float delta)

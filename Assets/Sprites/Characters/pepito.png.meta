@@ -1273,6 +1273,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: powerup_counter
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 231
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a55381a8a5ae6a64ca9064a9f4d999e4
+      internalID: 842127611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1335,6 +1357,7 @@ TextureImporter:
       pepito_7: -3932844921807552219
       pepito_8: -6857490433501117361
       pepito_9: -8116768032714911802
+      powerup_counter: 842127611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
