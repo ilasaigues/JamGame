@@ -82,6 +82,8 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     [SerializeField] DialogueAsset FirstCrusherDialogue;
     [SerializeField] DialogueAsset FirstFireDialogue;
 
+    public BGMHandler bgm;
+
     private void Awake()
     {
         MovementComponent = GetComponent<MovementComponent>();
@@ -157,15 +159,19 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         {
             case PowerupType.DoubleJump:
                 newPowerup = DoubleJumpPowerup;
+                bgm.SetBGM(1);
                 break;
             case PowerupType.Dash:
                 newPowerup = DashPowerup;
+                bgm.SetBGM(2);
                 break;
             case PowerupType.Hover:
                 newPowerup = HoverPowerup;
+                bgm.SetBGM(3);
                 break;
             case PowerupType.StoneSkin:
                 newPowerup = StoneSkinPowerup;
+                bgm.SetBGM(4);
                 break;
         }
         if (CurrentPowerup != newPowerup)
@@ -199,6 +205,7 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
     public IEnumerator Kill(BaseHazard hazard)
     {
+        bgm.SetBGM(0);
         if (LevelController == null) yield break;
         // disable controls (dying state?)
         // play death animation
