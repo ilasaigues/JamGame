@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(MovementComponent), typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 {
+
     public class RuntimeVariables
     {
         public bool CanJump => UsedJumps < MaxJumps;
@@ -182,9 +183,18 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
     public bool CanBeKilledBy(BaseHazard hazard)
     {
-        // check for current state to see if hazard can actually kill
-
-        return !CharacterStateMachine.IsInState<PlayerDyingState>();
+        if (CharacterStateMachine.IsInState<PlayerDyingState>())
+        {
+            return false;
+        }
+        return hazard.PowerupConfig.PowerupType switch
+        {
+            PowerupType.DoubleJump => true,
+            PowerupType.Dash => !CharacterStateMachine.IsInState<PlayerDashState>(),
+            PowerupType.Hover => true,
+            PowerupType.StoneSkin => !CharacterStateMachine.IsInState<PlayerStoneSkinState>(),
+            _ => true,
+        };
     }
 
     public IEnumerator Kill(BaseHazard hazard)

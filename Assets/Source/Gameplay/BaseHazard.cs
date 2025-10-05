@@ -1,6 +1,7 @@
+using AstralCore;
 using UnityEngine;
 
-public class BaseHazard : MonoBehaviour
+public class BaseHazard : TimeboundMonoBehaviour
 {
     [SerializeField]
     private PowerPickupSpawner powerPickupSpawner;
