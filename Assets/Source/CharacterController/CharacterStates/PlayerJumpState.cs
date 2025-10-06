@@ -87,7 +87,7 @@ public class PlayerJumpState : BaseState<CharacterController2d>
         }
         else
         {
-            return Agent.PlayerVariables.Gravity;
+            return Agent.PlayerVariables.Gravity * 2;
         }
     }
 
