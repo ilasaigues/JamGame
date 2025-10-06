@@ -5,11 +5,13 @@ public class BGMHandler : MonoBehaviour
 {
 
     StudioEventEmitter bgm;
+    public SFX sfxbank;
 
     void Start()
     {
         bgm = GetComponent<StudioEventEmitter>();
         bgm.Play();
+        RuntimeManager.PlayOneShot(sfxbank.powerup);
     }
 
     public void Pause()
@@ -21,5 +23,10 @@ public class BGMHandler : MonoBehaviour
     public void SetBGM(int newState)
     {
         bgm.EventInstance.setParameterByName("state", newState);
+    }
+
+    public void playSFX(EventReference sfx)
+    {
+        RuntimeManager.PlayOneShot(sfxbank.powerup);
     }
 }

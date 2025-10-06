@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c31805a89da9274ba05f717b32c58d0, type: 3}
+  m_Name: SFX
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  jump:
+    Guid:
+      Data1: 1389003621
+      Data2: 1308627231
+      Data3: 1779920813
+      Data4: 600543709
+    Path: event:/jump
+  walk:
+    Guid:
+      Data1: -914612670
+      Data2: 1258969486
+      Data3: 1498470797
+      Data4: 248292518
+    Path: event:/walk
+  dash:
+    Guid:
+      Data1: 902632654
+      Data2: 1230566405
+      Data3: -915193982
+      Data4: -699923965
+    Path: event:/dash
+  hover:
+    Guid:
+      Data1: 1505060418
+      Data2: 1255189177
+      Data3: 1183272065
+      Data4: 43988306
+    Path: event:/hover
+  stone:
+    Guid:
+      Data1: 845057215
+      Data2: 1089288673
+      Data3: 580709001
+      Data4: 781404688
+    Path: event:/stone
+  heavy:
+    Guid:
+      Data1: 1820849273
+      Data2: 1165401772
+      Data3: 351757981
+      Data4: 1411354873
+    Path: event:/heavy
+  fire:
+    Guid:
+      Data1: 792696604
+      Data2: 1327156125
+      Data3: 1454966460
+      Data4: 1613416602
+    Path: event:/fire
+  death:
+    Guid:
+      Data1: 1761473889
+      Data2: 1265408290
+      Data3: -1563624317
+      Data4: -1379870722
+    Path: event:/death
+  powerup:
+    Guid:
+      Data1: -2001188445
+      Data2: 1210864076
+      Data3: 1244933052
+      Data4: 1469951982
+    Path: event:/powerup

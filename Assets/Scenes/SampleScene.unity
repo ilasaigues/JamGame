@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ac92e3749ddd944b0b9eb0e09c013f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGMHandler
+  sfxbank: {fileID: 11400000, guid: d219719810d5d6347ae762604c12e708, type: 2}
 --- !u!4 &99247831
 Transform:
   m_ObjectHideFlags: 0
@@ -581,7 +582,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 16.84375
+  orthographic size: 11.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1883,6 +1884,67 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1001 &494141192419275668
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.5928
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9469433
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003750112007941558, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178340624080541239, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: powerPickupSpawner
+      value: 
+      objectReference: {fileID: 769789762}
+    - target: {fileID: 6663784704539848482, guid: e0f917515394951479e55995b1295a85, type: 3}
+      propertyPath: m_Name
+      value: Laser
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0f917515394951479e55995b1295a85, type: 3}
 --- !u!1001 &2240349644138743708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2230,3 +2292,4 @@ SceneRoots:
   - {fileID: 841952491}
   - {fileID: 83865843}
   - {fileID: 99247831}
+  - {fileID: 494141192419275668}
