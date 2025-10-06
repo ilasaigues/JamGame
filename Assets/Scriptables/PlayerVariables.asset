@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7967b265a0ad2304584e29402c94232f, type: 3}
   m_Name: PlayerVariables
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVariables
-  GroundSpeed: 10
-  GroundAcceleration: 100
-  GroundDeceleration: 100
-  AirSpeed: 10
+  GroundSpeed: 7
+  GroundAcceleration: 80
+  GroundDeceleration: 80
+  AirSpeed: 7
   AirAcceleration: 60
   AirDeceleration: 60
-  MaxAirVelocity: 10
+  MaxAirVelocity: 15
   JumpSpeed: 15
   BufferTime: 0.16666667
   CoyoteTime: 0.16666667
@@ -26,9 +26,9 @@ MonoBehaviour:
   DashDistance: 3
   JumpGravity: -35
   JumpGravityThreshold: 0.5
-  ApexGravity: -10
+  ApexGravity: -15
   ApexGravityThreshold: -0.5
-  Gravity: -45
+  Gravity: -50
   StoneSkinGravity: -60
   JumpInput: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   MoveInput: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
