@@ -498,6 +498,8 @@ MonoBehaviour:
   FirstSpikesDialogue: {fileID: 11400000, guid: d3cde06e21f74e9469ba3e8a491e6746, type: 2}
   FirstCrusherDialogue: {fileID: 11400000, guid: 5c29efaef3c00bd4ca48a6e929b49fcb, type: 2}
   FirstFireDialogue: {fileID: 11400000, guid: 66cdc9e118bd58e41b9f04fb66471296, type: 2}
+  DeathPrefab: {fileID: 4730608318948859846, guid: d87854a36f506aa4e82e6190b7dad2ef, type: 3}
+  bgm: {fileID: 0}
 --- !u!114 &6291631972145346015
 MonoBehaviour:
   m_ObjectHideFlags: 0

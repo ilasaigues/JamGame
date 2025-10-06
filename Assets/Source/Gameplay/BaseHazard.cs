@@ -4,7 +4,7 @@ using UnityEngine;
 public class BaseHazard : TimeboundMonoBehaviour
 {
     [SerializeField]
-    private PowerPickupSpawner powerPickupSpawner;
+    public PowerPickupSpawner powerPickupSpawner;
     public PowerupConfig PowerupConfig;
 
     void OnTriggerEnter2D(Collider2D collision)

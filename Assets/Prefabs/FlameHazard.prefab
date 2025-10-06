@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5002825056823039683}
   - component: {fileID: 9025722169451497918}
   - component: {fileID: 1014854897449621609}
+  - component: {fileID: 8075311651642012642}
   m_Layer: 0
   m_Name: FlameHazard
   m_TagString: Untagged
@@ -173,8 +174,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899bc08c2cb15194ca0cc92110490523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireHazard
-  _timeContext: {fileID: 0}
+  _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}
   powerPickupSpawner: {fileID: 0}
   PowerupConfig: {fileID: 11400000, guid: d00c36c0cb41c0f469bd4468e2265d14, type: 2}
   OnTime: 2
   OffTime: 2
+--- !u!114 &8075311651642012642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7938734062576401593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc468b23ff9857143b4780c91036fd76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AstralCore::AstralCore.AnimatorTimeContextualizer
+  _timeContext: {fileID: 11400000, guid: cd99bd00fae07af4f929676a69905d53, type: 2}

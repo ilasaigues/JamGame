@@ -23,6 +23,12 @@ public class CrusherHazard : BaseHazard
         _boxCollider = GetComponent<BoxCollider2D>();
         _startPosition = transform.position;
         _rb = GetComponent<Rigidbody2D>();
+        _timeContext.OnPause += Pause;
+    }
+
+    void OnDestroy()
+    {
+        _timeContext.OnPause -= Pause;
     }
 
     void FixedUpdate()
@@ -39,6 +45,11 @@ public class CrusherHazard : BaseHazard
                 StopAndTurn(false);
             }
         }
+    }
+
+    void Pause(bool paused)
+    {
+        _rb.simulated = !paused;
     }
 
     private void StopAndTurn(bool rising)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AstralCore;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -81,6 +82,8 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     [SerializeField] DialogueAsset FirstSpikesDialogue;
     [SerializeField] DialogueAsset FirstCrusherDialogue;
     [SerializeField] DialogueAsset FirstFireDialogue;
+
+    [SerializeField] Animator DeathPrefab;
 
     public BGMHandler bgm;
 
@@ -211,16 +214,23 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         // play death animation
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerDyingState)));
 
+        Animator deathInstance = null;
         // WAIT UNTIL ANIMATION IS DONE
 
         if (TotalDeaths == 0) // first death
         {
-            // D R A M A T I C pause
             yield return new WaitForSeconds(2);
 
             // spawn death on hazard respawner location
+            deathInstance = Instantiate(DeathPrefab, hazard.powerPickupSpawner.transform.position, Quaternion.identity);
+            if (deathInstance.transform.position.x > transform.position.x)
+            {
+                deathInstance.GetOrAddComponent<SpriteRenderer>().flipX = true;
+            }
+            deathInstance.SetBool("active", true);
 
-            // wait another second
+
+            yield return new WaitForSeconds(2);
 
             // enqueue first death dialogue
             LevelController.DialoguePlayer.EnqueueDialogue(FirstDeathDialogue);
@@ -228,6 +238,16 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
         if (!DeathCounts.TryGetValue(hazard.PowerupConfig.PowerupType, out var count))
         {
+            if (deathInstance == null)
+            {
+                yield return new WaitForSeconds(1);
+                deathInstance = Instantiate(DeathPrefab, hazard.powerPickupSpawner.transform.position, Quaternion.identity);
+                if (deathInstance.transform.position.x > transform.position.x)
+                {
+                    deathInstance.GetOrAddComponent<SpriteRenderer>().flipX = true;
+                }
+                deathInstance.SetBool("active", true);
+            }
             yield return new WaitForSeconds(1);
             DeathCounts[hazard.PowerupConfig.PowerupType] = 0;
             // enqueue first death of type
@@ -252,6 +272,12 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
         // WAIT UNTIL DIALOGUE IS DONE
         yield return new WaitUntil(() => !LevelController.DialoguePlayer.IsInDialogue);
+
+        // hide death
+        if (deathInstance != null)
+        {
+            deathInstance.SetBool("active", false);
+        }
 
         // drop soul
         hazard.SpawnPickup(transform.position);
