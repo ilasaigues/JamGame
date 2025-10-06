@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   ActorSprite: {fileID: 21300000, guid: 60feea47a597fc6428aa98a7ea8619f9, type: 3}
   ActorName: Death
-  Text: The gift of the double jump should prevent you from meeting this end.
+  Text: The gift of the double jump should prevent you from meeting this end. Press
+    [JUMP] mid-air to double jump.
   NextDialogue: {fileID: 0}

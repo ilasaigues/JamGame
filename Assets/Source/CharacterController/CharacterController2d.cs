@@ -197,6 +197,7 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     {
         // reset powerup
         SetCurrentPowerup(PowerupType.None);
+        BGMHandler.Instance.PlaySFX(soundEffects.death);
 
         if (LevelController == null) yield break;
         // disable controls (dying state?)

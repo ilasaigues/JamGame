@@ -20,6 +20,34 @@ public class DialoguePlayer : MonoBehaviour
 
     public bool IsInDialogue { get; private set; }
 
+    private bool _continue;
+
+    private bool ContinuePressed
+    {
+        get
+        {
+            if (_continue)
+            {
+                _continue = false;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    private void Start()
+    {
+        foreach (var inputRef in ContinueInputs)
+        {
+            inputRef.action.performed += PressContinue;
+        }
+    }
+
+    private void PressContinue(InputAction.CallbackContext _)
+    {
+        _continue = true;
+    }
+
     public void EnqueueDialogue(DialogueAsset dialogueData)
     {
         gameObject.SetActive(true);
@@ -47,13 +75,13 @@ public class DialoguePlayer : MonoBehaviour
             while (TextBox.maxVisibleCharacters < targetCharacters)
             {
                 TextBox.maxVisibleCharacters++;
-                if (ContinueInputs.Any(i => i.action.IsPressed()))
+                if (ContinuePressed)
                 {
                     TextBox.maxVisibleCharacters = targetCharacters;
                 }
                 yield return waitForSeconds;
             }
-            yield return new WaitUntil(() => ContinueInputs.Any(i => i.action.WasCompletedThisFrame()));
+            yield return new WaitUntil(() => ContinuePressed);
             if (currentDialogue.NextDialogue != null)
             {
                 currentDialogue = currentDialogue.NextDialogue;

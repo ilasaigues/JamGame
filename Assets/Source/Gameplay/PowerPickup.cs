@@ -29,7 +29,6 @@ public class PowerPickup : MonoBehaviour
 
     public void AddPowerupCount()
     {
-        Debug.Log("Adding powerup count");
         powerupAmount = Mathf.Clamp(powerupAmount + 1, 0, 3);
         UpdateCountDisplay();
     }

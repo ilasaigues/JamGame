@@ -75,7 +75,7 @@ public class CrusherHazard : BaseHazard
     {
         if (!_rising)
         {
-            if (killable.CanBeKilledBy(this).LogInPlace())
+            if (killable.CanBeKilledBy(this))
             {
                 StartCoroutine(killable.Kill(this));
             }

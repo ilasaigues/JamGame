@@ -401,7 +401,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 5711820192259859403, guid: 123bceb7f39132646be1a3006ea9b0b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -499,7 +499,6 @@ MonoBehaviour:
   FirstCrusherDialogue: {fileID: 11400000, guid: 5c29efaef3c00bd4ca48a6e929b49fcb, type: 2}
   FirstFireDialogue: {fileID: 11400000, guid: 66cdc9e118bd58e41b9f04fb66471296, type: 2}
   DeathPrefab: {fileID: 4730608318948859846, guid: d87854a36f506aa4e82e6190b7dad2ef, type: 3}
-  bgm: {fileID: 0}
   soundEffects: {fileID: 11400000, guid: d219719810d5d6347ae762604c12e708, type: 2}
 --- !u!114 &6291631972145346015
 MonoBehaviour:
