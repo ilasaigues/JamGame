@@ -233,3 +233,4 @@ MonoBehaviour:
     m_Bits: 1
   VerticalVelocity: 5
   StopTime: 1
+  SoundEffects: {fileID: 11400000, guid: d219719810d5d6347ae762604c12e708, type: 2}

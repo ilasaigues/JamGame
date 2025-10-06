@@ -85,7 +85,7 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 
     [SerializeField] Animator DeathPrefab;
 
-    public BGMHandler bgm;
+    public SFX soundEffects;
 
     private void Awake()
     {
@@ -109,28 +109,6 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     private void Update()
     {
         if (_timeContext.Paused) return;
-        //TEMP
-        if (Keyboard.current[Key.Digit0].wasPressedThisFrame)
-        {
-            SetCurrentPowerup(PowerupType.None);
-        }
-        else if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
-        {
-            SetCurrentPowerup(PowerupType.DoubleJump);
-        }
-        else if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
-        {
-            SetCurrentPowerup(PowerupType.Dash);
-        }
-        else if (Keyboard.current[Key.Digit3].wasPressedThisFrame)
-        {
-            SetCurrentPowerup(PowerupType.Hover);
-        }
-        else if (Keyboard.current[Key.Digit4].wasPressedThisFrame)
-        {
-            SetCurrentPowerup(PowerupType.StoneSkin);
-        }
-        //TEMP
 
         CurrentFrameInput.JumpPressedThisFrame = PlayerVariables.JumpInput.action.WasPressedThisFrame();
         if (CurrentFrameInput.JumpPressedThisFrame)
@@ -158,23 +136,20 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
     public void SetCurrentPowerup(PowerupType powerupType)
     {
         BasePowerup newPowerup = null;
+        BGMHandler.Instance.SetBGM((int)powerupType);
         switch (powerupType)
         {
             case PowerupType.DoubleJump:
                 newPowerup = DoubleJumpPowerup;
-                bgm.SetBGM(1);
                 break;
             case PowerupType.Dash:
                 newPowerup = DashPowerup;
-                bgm.SetBGM(2);
                 break;
             case PowerupType.Hover:
                 newPowerup = HoverPowerup;
-                bgm.SetBGM(3);
                 break;
             case PowerupType.StoneSkin:
                 newPowerup = StoneSkinPowerup;
-                bgm.SetBGM(4);
                 break;
         }
         if (CurrentPowerup != newPowerup)
@@ -196,19 +171,33 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         {
             return false;
         }
-        return hazard.PowerupConfig.PowerupType switch
+        switch (hazard.PowerupConfig.PowerupType)
         {
-            PowerupType.DoubleJump => true,
-            PowerupType.Dash => !CharacterStateMachine.IsInState<PlayerDashState>(),
-            PowerupType.Hover => true,
-            PowerupType.StoneSkin => !CharacterStateMachine.IsInState<PlayerStoneSkinState>(),
-            _ => true,
-        };
+            case PowerupType.DoubleJump: return true;
+            case PowerupType.Dash: return !CharacterStateMachine.IsInState<PlayerDashState>();
+            case PowerupType.Hover: return true;
+            case PowerupType.StoneSkin:
+                if (CharacterStateMachine.IsInState<PlayerStoneSkinState>())
+                {
+                    BGMHandler.Instance.PlaySFX(soundEffects.stone);
+                    return false;
+                }
+                else return true;
+            default: return true;
+
+        }
+    }
+
+    public void PlayWalkSound()
+    {
+        BGMHandler.Instance.PlaySFX(soundEffects.walk);
     }
 
     public IEnumerator Kill(BaseHazard hazard)
     {
-        bgm.SetBGM(0);
+        // reset powerup
+        SetCurrentPowerup(PowerupType.None);
+
         if (LevelController == null) yield break;
         // disable controls (dying state?)
         // play death animation
@@ -295,8 +284,6 @@ public class CharacterController2d : TimeboundMonoBehaviour, IKillable
         // WAIT UNTIL ANIMATION IS DONE
         yield return new WaitForSeconds(1f);
 
-        // reset powerup
-        SetCurrentPowerup(PowerupType.None);
         // re-enable controls
         CharacterStateMachine.SetNextState(new StateChangeRequest(typeof(PlayerAirState), new StateConfig.StartingVelocityConfig(Vector2.zero)));
     }

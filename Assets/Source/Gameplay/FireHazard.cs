@@ -12,7 +12,6 @@ public class FireHazard : BaseHazard
     private float remainingTime;
     private bool FireOn = false;
 
-
     private void Start()
     {
         animator = GetComponent<Animator>();

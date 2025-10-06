@@ -18,6 +18,8 @@ public class CrusherHazard : BaseHazard
 
     private float _remainingStopTime;
 
+    [SerializeField] SFX SoundEffects;
+
     private void Start()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
@@ -61,9 +63,10 @@ public class CrusherHazard : BaseHazard
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Colliding with " + collision.gameObject.name);
         if ((collision.gameObject.layer & GroundMask.value) == collision.gameObject.layer)
         {
+            BGMHandler.Instance.PlaySFX(SoundEffects.heavy);
+
             StopAndTurn(true);
         }
     }

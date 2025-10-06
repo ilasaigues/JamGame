@@ -10,6 +10,7 @@ public class PlayerDashState : BaseState<CharacterController2d>
         _remainingDistance = Agent.PlayerVariables.DashDistance;
         Agent.RuntimeVars.CanDash = false;
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Dashing, true);
+        BGMHandler.Instance.PlaySFX(Agent.soundEffects.dash);
 
     }
 

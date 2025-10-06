@@ -10,7 +10,7 @@ public class PlayerDyingState : BaseState<CharacterController2d>
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Dashing, false);
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Rising, false);
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Hovering, false);
-
+        BGMHandler.Instance.PlaySFX(Agent.soundEffects.death);
     }
 
     protected override void ExitStateInternal()

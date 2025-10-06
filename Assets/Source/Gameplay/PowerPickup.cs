@@ -15,6 +15,7 @@ public class PowerPickup : MonoBehaviour
         {
             if (controller.CanTakePowerup(this))
             {
+                BGMHandler.Instance.PlaySFX(controller.soundEffects.powerup);
                 controller.SetCurrentPowerup(powerupType);
                 powerupAmount--;
                 UpdateCountDisplay();

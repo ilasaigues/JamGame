@@ -18,7 +18,7 @@ public class PlayerJumpState : BaseState<CharacterController2d>
 
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Rising, Agent.RuntimeVars.UsedJumps == 0);
         Agent.RuntimeVars.UsedJumps++;
-
+        BGMHandler.Instance.PlaySFX(Agent.soundEffects.jump);
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)
@@ -87,7 +87,7 @@ public class PlayerJumpState : BaseState<CharacterController2d>
         }
         else
         {
-            return Agent.PlayerVariables.Gravity;
+            return Agent.PlayerVariables.Gravity * 2;
         }
     }
 

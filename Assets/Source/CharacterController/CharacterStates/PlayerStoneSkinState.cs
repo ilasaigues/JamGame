@@ -7,6 +7,7 @@ public class PlayerStoneSkinState : BaseState<CharacterController2d>
     {
         InitFromConfigs(configs);
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Stoneskin, true);
+        BGMHandler.Instance.PlaySFX(Agent.soundEffects.stone);
     }
 
     private void InitFromConfigs(params StateConfig.IBaseStateConfig[] configs)

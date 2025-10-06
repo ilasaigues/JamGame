@@ -3,15 +3,29 @@ using FMODUnity;
 
 public class BGMHandler : MonoBehaviour
 {
+    public static BGMHandler Instance { get; private set; }
 
     StudioEventEmitter bgm;
     public SFX sfxbank;
+
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            DestroyImmediate(this);
+        }
+    }
 
     void Start()
     {
         bgm = GetComponent<StudioEventEmitter>();
         bgm.Play();
-        RuntimeManager.PlayOneShot(sfxbank.powerup);
     }
 
     public void Pause()
@@ -25,8 +39,8 @@ public class BGMHandler : MonoBehaviour
         bgm.EventInstance.setParameterByName("state", newState);
     }
 
-    public void playSFX(EventReference sfx)
+    public void PlaySFX(EventReference sfx)
     {
-        RuntimeManager.PlayOneShot(sfxbank.powerup);
+        RuntimeManager.PlayOneShot(sfx);
     }
 }

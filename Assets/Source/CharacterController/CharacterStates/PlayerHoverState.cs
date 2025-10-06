@@ -8,6 +8,7 @@ public class PlayerHoverState : BaseState<CharacterController2d>
     {
         InitFromConfigs(configs);
         Agent.SetAnimationFlag(CharacterController2d.AnimationParameters.Hovering, true);
+        BGMHandler.Instance.PlaySFX(Agent.soundEffects.hover);
 
     }
 

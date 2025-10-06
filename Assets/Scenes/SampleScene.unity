@@ -198,104 +198,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &99247827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 99247831}
-  - component: {fileID: 99247830}
-  - component: {fileID: 99247829}
-  - component: {fileID: 99247828}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &99247828
+--- !u!114 &99247830 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 648330822605449236, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+  m_PrefabInstance: {fileID: 2061309017304555429}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99247827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1712406098
-      Data2: 1299641871
-      Data3: -2025447523
-      Data4: -783240524
-    Path: event:/BGM
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &99247829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99247827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioBankLoader
-  LoadEvent: 1
-  UnloadEvent: 2
-  Banks:
-  - BGM
-  - Master
-  - SFX
-  CollisionTag: 
-  PreloadSamples: 0
---- !u!114 &99247830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99247827}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ac92e3749ddd944b0b9eb0e09c013f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGMHandler
-  sfxbank: {fileID: 11400000, guid: d219719810d5d6347ae762604c12e708, type: 2}
---- !u!4 &99247831
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99247827}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.81974, y: -0.21964, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &342561517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,6 +2123,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0f917515394951479e55995b1295a85, type: 3}
+--- !u!1001 &2061309017304555429
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.81974
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.21964
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679637355829621373, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932469197153242269, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 548d89e2e068e7f4cb9914f415c1920e, type: 3}
 --- !u!1001 &2240349644138743708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2620,7 +2590,7 @@ SceneRoots:
   - {fileID: 532414090}
   - {fileID: 841952491}
   - {fileID: 83865843}
-  - {fileID: 99247831}
+  - {fileID: 2061309017304555429}
   - {fileID: 494141192419275668}
   - {fileID: 5990250853057375145}
   - {fileID: 1186246377}
