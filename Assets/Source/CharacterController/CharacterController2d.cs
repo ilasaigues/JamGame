@@ -10,7 +10,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(MovementComponent), typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class CharacterController2d : TimeboundMonoBehaviour, IKillable
 {
-
     public class RuntimeVariables
     {
         public bool CanJump => UsedJumps < MaxJumps;

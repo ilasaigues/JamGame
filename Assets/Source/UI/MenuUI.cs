@@ -14,6 +14,10 @@ public class MenuUI : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
     }
 
+    public void ChangeScene(string sceneName)
+    {
+        SceneTransitionManager.Instance.TransitionToScene(sceneName, sceneTransitionBehaviour);
+    }
 
     public void ChangeScene(SceneReference sceneReference)
     {

@@ -24,11 +24,15 @@ namespace AstralCore
             TransitionCanvasContainer = GetComponent<Canvas>();
             TransitionCanvasContainer.enabled = false;
         }
+        public async Task TransitionToScene(SceneReference targetSceneReference, BaseSceneTransitionBehaviour transition)
+        {
+            await TransitionToScene(targetSceneReference.ToString(), transition);
+        }
 
-        public async void TransitionToScene(SceneReference targetSceneReference, BaseSceneTransitionBehaviour transition)
+        public async Task TransitionToScene(string sceneName, BaseSceneTransitionBehaviour transition)
         {
             //Declare the scene transition operation without awaiting it
-            var loadOperation = SceneManager.LoadSceneAsync(targetSceneReference.ToString());
+            var loadOperation = SceneManager.LoadSceneAsync(sceneName);
             //block scene activation preemptively
             loadOperation.allowSceneActivation = false;
             //enable the transition canvas
